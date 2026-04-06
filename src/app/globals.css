@@ -2,22 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * Airbnb-inspired UI (reference: awesome-design-md design-md/airbnb/DESIGN.md).
+ * Color/shadow tokens live in tailwind.config.ts (bnb.*, shadow-airbnb-*).
+ * Airbnb Cereal VF is proprietary — fallback stack below.
+ */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-bnb-white text-bnb-ink antialiased;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI",
+      Roboto, "Helvetica Neue", sans-serif;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .heading-section {
+    @apply text-[1.75rem] font-bold leading-[1.43] tracking-tight text-bnb-ink;
+  }
+  .heading-card {
+    @apply text-[1.375rem] font-semibold leading-[1.18] tracking-[-0.44px] text-bnb-ink;
+  }
+  .text-body {
+    @apply text-sm font-normal leading-[1.43] text-bnb-muted;
+  }
+  .text-ui-medium {
+    @apply text-base font-medium leading-tight text-bnb-ink;
+  }
+  .micro-label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.32px] text-bnb-muted;
+  }
 }
 
 @layer utilities {
