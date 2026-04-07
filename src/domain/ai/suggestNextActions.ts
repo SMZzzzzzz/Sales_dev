@@ -16,11 +16,11 @@ export function suggestNextActions(input: ProposalInput): AiProposal {
 
   if (under.length > 0) {
     const k = under[0];
-    primaryAction = `「${k.name}」が未達寄りです。成果に直結する商談フォローまたは新規アポ獲得を最優先にしてください。`;
+    primaryAction = `「${k.name}」は未達です。成果に直結する商談フォローまたは新規アポ獲得を最優先にしてください。`;
     reasons.push(
-      `${k.name}の実績（${k.actual}${k.unit}）が目標（${k.target}${k.unit}）の9割を下回っています`
+      `${k.name}は目標${k.target}${k.unit}に対し実績${k.actual}${k.unit}で、目標未達です。`
     );
-    situationSummary = "KPI未達寄り";
+    situationSummary = "KPI未達";
   }
 
   if (input.hasCancellation) {
@@ -28,7 +28,7 @@ export function suggestNextActions(input: ProposalInput): AiProposal {
       "キャンセルで空いた枠を活用し、近隣・高優先度の顧客へのフォローを最優先にしてください。";
     reasons.push("当日の訪問にキャンセルが含まれています");
     situationSummary =
-      under.length > 0 ? "KPI未達寄り・キャンセルあり" : "キャンセル発生";
+      under.length > 0 ? "KPI未達・キャンセルあり" : "キャンセル発生";
 
     const c = pickNearestHighPriorityCustomer(input.customers);
     if (c) {
@@ -41,7 +41,7 @@ export function suggestNextActions(input: ProposalInput): AiProposal {
   }
 
   if (!input.hasCancellation && under.length === 0) {
-    reasons.push("主要KPIは目標範囲内です");
+    reasons.push("主要KPIはいずれも目標を満たしています");
     alternativeActions.push("翌日以降のアポ枠の確保");
     alternativeActions.push("パイプラインの見直しと優先順位付け");
   }

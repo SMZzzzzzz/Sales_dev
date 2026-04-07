@@ -22,9 +22,9 @@ export function SummaryCards({
 }: SummaryCardsProps) {
   const items = [
     {
-      label: "全体達成率（簡易）",
+      label: "主要KPI達成率（簡易）",
       value: formatRatioAsPercent(companyAchievementRate, 0),
-      sub: "主要KPIの加重平均イメージ",
+      sub: "対象は主要KPIのみ",
     },
     {
       label: "売上見込み",
