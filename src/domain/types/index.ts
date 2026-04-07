@@ -35,6 +35,8 @@ export interface ScheduleSlot {
   end: string;
   place: string;
   cancelled: boolean;
+  /** true のとき予定あり。false は空き枠（枠数には含むが実施予定には含めない） */
+  booked: boolean;
 }
 
 export interface AiProposal {

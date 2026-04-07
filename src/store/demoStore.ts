@@ -22,7 +22,7 @@ export const useDemoStore = create<DemoState>((set, get) => ({
   toggleSlotCancel: (slotId) => {
     set((state) => ({
       schedules: state.schedules.map((s) =>
-        s.id === slotId ? { ...s, cancelled: !s.cancelled } : s
+        s.id === slotId && s.booked ? { ...s, cancelled: !s.cancelled } : s
       ),
     }));
     get().recomputeProposal();
@@ -35,7 +35,7 @@ export const useDemoStore = create<DemoState>((set, get) => ({
       kpis,
       schedules,
       customers: mockCustomers,
-      hasCancellation: schedules.some((s) => s.cancelled),
+      hasCancellation: schedules.some((s) => s.booked && s.cancelled),
     });
     set({ lastProposal: proposal });
   },

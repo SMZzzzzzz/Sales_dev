@@ -8,6 +8,7 @@ export const mockSchedules: ScheduleSlot[] = [
     end: "11:00",
     place: "株式会社アルファ（本社）",
     cancelled: false,
+    booked: true,
   },
   {
     id: "s2",
@@ -16,13 +17,15 @@ export const mockSchedules: ScheduleSlot[] = [
     end: "14:30",
     place: "ベータ商事 支店",
     cancelled: false,
+    booked: true,
   },
   {
     id: "s3",
     userId: "u1",
     start: "15:30",
-    end: "16:00",
-    place: "オンライン商談",
+    end: "17:00",
+    place: "",
     cancelled: false,
+    booked: false,
   },
 ];

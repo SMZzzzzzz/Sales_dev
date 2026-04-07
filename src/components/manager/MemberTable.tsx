@@ -2,22 +2,13 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import type { Kpi, User } from "@/domain/types";
-import { formatRatioAsPercent, kpiAchievementRatio } from "@/lib/format";
+import { formatRatioAsPercent } from "@/lib/format";
+import { averageAchievement } from "@/lib/metrics";
 import { cn } from "@/lib/cn";
 
 interface MemberTableProps {
   users: User[];
   kpis: Kpi[];
-}
-
-function averageAchievement(userId: string, kpis: Kpi[]): number | null {
-  const list = kpis.filter((k) => k.userId === userId && k.active);
-  if (list.length === 0) return null;
-  const sum = list.reduce(
-    (acc, k) => acc + kpiAchievementRatio(k.actual, k.target),
-    0
-  );
-  return sum / list.length;
 }
 
 const statusLabel: Record<User["status"], string> = {
